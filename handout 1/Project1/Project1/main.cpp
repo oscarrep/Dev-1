@@ -2,21 +2,14 @@
 #include <vector>
 using namespace std;
 
-class vec3 {
+class vec3 
+{
+protected:
+	float x, y, z;
+
 public:
-	vec3();
-	vec3(float, float, float);
-	vec3 operator+(vec3 rhs);
-	vec3 operator-(vec3 rhs);
-	vec3 operator+=(vec3 rhs);
-	vec3 operator-=(vec3 rhs);
-	vec3 operator=(vec3 rhs);
-	vec3 operator==(vec3 rhs);
+	vec3(float _x, float _y, float _z) : x(_x), y(_y), z(_z)
+	{
+	}
 
-	float dot(vec3 rhs);
-	float length();
-
-	float X;
-	float Y;
-	float Z;	
 };

@@ -1,15 +1,16 @@
 #include <iostream>
-#include <vector>
+#include "vec3.h"
 using namespace std;
 
-class vec3 
+int main()
 {
-protected:
-	float x, y, z;
-
-public:
-	vec3(float _x, float _y, float _z) : x(_x), y(_y), z(_z)
-	{
-	}
-
-};
+	vec3<double> v1(1, 2, 3);
+	vec3<double> v2(1, 1, 1);
+	vec3<double> v3 = v1 + v2;
+	v3.name();
+	v1.zero();
+	v1.is_zero();
+	v2.is_zero();
+	system("pause");
+	return 0;
+}

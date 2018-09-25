@@ -1,66 +1,73 @@
 #ifndef _VEC3_H
 #define _VEC3_H
 #include <math.h>
+//using namespace std;
 
-using namespace std;
-
-template<class type>
+template <class _type>
 class vec3
 {
 private:
 
-	type x, y, z;
+	_type x, y, z;
 public:
+
+	///////////////////////* CONSTRUCTOR *///////////////////////
 
 	vec3() {}
 
-	vec3(const type &x, const type &y, const type &z) : x(x), y(y), z(z) {}
+	vec3(const _type &x, const _type &y, const _type &z) : 
+		x(x),
+		y(y),
+		z(z)
+	{}
 
-	vec3(const vec3 &vec) : x(vec.x), y(vec.y), z(vec.z) {}
+	vec3(const vec3 &vector) : x(vector.x), y(vector.y), z(vector.z) {}
 
-	vec3 operator+(const vec3 &vect) const
+	///////////////////////* OPERATORS GO HERE *//////////////////////
+
+	vec3 operator+(const vec3 &vectorB) const
 	{
-		return vec3(x + vect.x, y + vect.y, z + vect.z);
+		return vec3(x + vectorB.x, y + vectorB.y, z + vectorB.z);
 	}
 
-	vec3 operator-(const vec3 &vect) const
+	vec3 operator-(const vec3 &vectorB) const
 	{
-		return vec3(x - vect.x, y - vect.y, z - vect.z);
+		return vec3(x - vectorB.x, y - vectorB.y, z - vectorB.z);
 	}
 
-	vec3 operator+=(const vec3 &vect)
+	vec3 operator+=(const vec3 &vectorB)
 	{
-		x += vect.x; 
-		y += vect.y; 
-		z += vect.z;
+		x += vectorB.x; 
+		y += vectorB.y; 
+		z += vectorB.z;
 		return *this;
 
 	}
 
-	vec3 operator-=(const vec3 &vect)
+	vec3 operator-=(const vec3 &vectorB)
 	{
-		x -= vect.x; 
-		y -= vect.y; 
-		z -= vect.z;
+		x -= vectorB.x; 
+		y -= vectorB.y; 
+		z -= vectorB.z;
 		return *this;
 	}
 
-	vec3 operator=(const vec3 &vect)
+	vec3 operator=(const vec3 &vectorB)
 	{
-		x = vect.x; 
-		y = vect.y; 
-		z = vect.z;
+		x = vectorB.x; 
+		y = vectorB.y; 
+		z = vectorB.z;
 		return *this;
 	}
 
-	bool operator==(const vec3 &vect) const
+	bool operator==(const vec3 &vectorB) const
 	{
-		return (x == vect.x && y == vect.y && z == vect.z);
+		return (x == vectorB.x && y == vectorB.y && z == vectorB.z);
 	}
 
 	vec3 normalize() const
 	{
-		type magnitude = sqrt((x * x) + (y * y) + (z * z));
+		_type magnitude = sqrt((x * x) + (y * y) + (z * z));
 		return vec3(x / magnitude, y / magnitude, z / magnitude);
 
 	}
@@ -79,9 +86,9 @@ public:
 
 	}
 
-	type distance_to(const vec3 &vect) const
+	_type distance_to(const vec3 &vector) const
 	{
-		return sqrt(((x - vect.x) * (x - vect.x)) + ((y - vect.y) * (y - vect.y)) + ((z - vect.z) * (z - vect.z)));
+		return sqrt(((x - vector.x) * (x - vector.x)) + ((y - vector.y) * (y - vector.y)) + ((z - vector.z) * (z - vector.z)));
 	}
 
 };

@@ -1,109 +1,89 @@
-#ifndef _VEC3_H_
-#define _VEC3_H_
+#ifndef _VEC3_H
+#define _VEC3_H
 #include <math.h>
 
 using namespace std;
-template<class type>
 
+template<class type>
 class vec3
 {
 private:
+
 	type x, y, z;
 public:
-	vec3()
+
+	vec3() {}
+
+	vec3(const type &x, const type &y, const type &z) : x(x), y(y), z(z) {}
+
+	vec3(const vec3 &vec) : x(vec.x), y(vec.y), z(vec.z) {}
+
+	vec3 operator+(const vec3 &vect) const
 	{
-		x = 0;
-		y = 0;
-		z = 0;
+		return vec3(x + vect.x, y + vect.y, z + vect.z);
 	}
 
-	vec3(int x, int y, int z)
+	vec3 operator-(const vec3 &vect) const
 	{
-		this->x = x;
-		this->y = y;
-		this->z = z;
+		return vec3(x - vect.x, y - vect.y, z - vect.z);
 	}
 
-	vec3(float x, float y, float z)
+	vec3 operator+=(const vec3 &vect)
 	{
-		this->x = x;
-		this->y = y;
-		this->z = z;
-	}
-
-	vec3 operator+(vec3 const &vect)
-	{
-		vec3 vecres(x + vect.x, y + vect.y, z + vect.z);
-	}
-
-	vec3 operator-(vec3 const &vect)
-	{
-		vec3 vecres(x - vect.x, y - vect.y, z - vect.z);
-		return vecres;
-	}
-
-	void operator+=(vec3 const &vect)
-	{
-		x += vect.x;
-		y += vect.y;
+		x += vect.x; 
+		y += vect.y; 
 		z += vect.z;
+		return *this;
 
 	}
 
-	void operator-=(vec3 const &vect)
+	vec3 operator-=(const vec3 &vect)
 	{
-		x -= vect.x;
-		y -= vect.y;
+		x -= vect.x; 
+		y -= vect.y; 
 		z -= vect.z;
+		return *this;
 	}
 
-	void operator=(vec3 const &vect)
+	vec3 operator=(const vec3 &vect)
 	{
-		x = vect.x;
-		y = vect.y;
+		x = vect.x; 
+		y = vect.y; 
 		z = vect.z;
+		return *this;
 	}
 
-	bool operator==(vec3 const &vect)
+	bool operator==(const vec3 &vect) const
 	{
-		if (x == vect.x && y == vect.y && z == vect.z) return true;
-		else return false;
+		return (x == vect.x && y == vect.y && z == vect.z);
 	}
 
-	void normalize() const
+	vec3 normalize() const
 	{
-		type magnitude = sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
-		if (magnitude != 0)
-		{
-			cout << x / magnitude << " " << y / magnitude << " " << z / magnitude << endl;
-		}
-		else
-			cout << "no exist" << endl;
+		type magnitude = sqrt((x * x) + (y * y) + (z * z));
+		return vec3(x / magnitude, y / magnitude, z / magnitude);
+
 	}
 
-	void zero()
+	vec3 zero()
 	{
-		x = 0;
-		y = 0;
-		z = 0;
+		x = 0.0f;
+		y = 0.0f;
+		z = 0.0f;
+		return *this;
 	}
 
-	void is_zero()
+	bool is_zero() const
 	{
-		if (x == 0 && y == 0 && z == 0) cout << "is zero" << endl;
-		else cout << "no is zero" << endl;
+		return (x == 0.0 && y == 0.0 && z == 0.0);
+
 	}
 
-	void distance_to(vec3 const &vect)
+	type distance_to(const vec3 &vect) const
 	{
-		cout << "(" << x - vect.x << " , " << y - vect.y << " , " << z - vect.z << ")" << endl;
+		return sqrt(((x - vect.x) * (x - vect.x)) + ((y - vect.y) * (y - vect.y)) + ((z - vect.z) * (z - vect.z)));
 	}
 
-	void name()
-	{
-		cout << x << " " << y << " " << z << endl;
-	}
 };
-
 
 #endif

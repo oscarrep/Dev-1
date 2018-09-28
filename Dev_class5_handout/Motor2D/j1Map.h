@@ -13,8 +13,14 @@ struct LayerData
 	uint width = 0;
 	uint height = 0;
 	uint* tiles = nullptr;
-	uint firstgid;
 	p2SString name;
+	~LayerData()
+	{
+		if (tiles != nullptr)
+		{
+			delete tiles;
+		}
+	}
 };
 
 	// TODO 6: Short function to get the value of x,y
@@ -61,6 +67,7 @@ struct MapData
 	p2List<TileSet*>	tilesets;
 	// TODO 2: Add a list/array of layers to the map!
 
+	p2List_item<LayerData*>	layers;
 
 };
 
@@ -94,6 +101,7 @@ private:
 	bool LoadMap();
 	bool LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set);
 	bool LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set);
+	bool LoadLayer(pugi::xml_node& Maplayer_node, TileSet* set);
 	// TODO 3: Create a method that loads a single layer
 	// bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
 

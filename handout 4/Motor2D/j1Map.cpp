@@ -68,12 +68,13 @@ bool j1Map::Load(const char* file_name)
 	{
 		// TODO 3: Create and call a private function to load and fill
 		// all your map data
-
-
+		LoadMap (map_file.child("map"));
+		LoadTileset (map_file.child("map"));
 	}
 
 	// TODO 4: Create and call a private function to load a tileset
 	// remember to support more any number of tilesets!
+	LoadTileset(map);
 	
 
 	if(ret == true)
@@ -87,3 +88,43 @@ bool j1Map::Load(const char* file_name)
 	return ret;
 }
 
+bool j1Map::LoadMap(const pugi::xml_node& node)
+{
+	map_info newmap;
+	newmap.tilewidth = node.attribute("tilewidth").as_uint();
+	LOG("Tilewidth: %d", newmap.tilewidth);
+	newmap.tileheight = node.attribute("tileheigth").as_uint();
+	LOG("Tileheight: %d", newmap.tileheight);
+	newmap.height = node.attribute("height").as_uint();
+	LOG("Height: %d", newmap.width);
+	newmap.width = node.attribute("widith").as_uint();
+	LOG("Width: %d", newmap.width);
+	p2SString orientation_string = node.attribute("orentation").as_string();
+	if (orientation_string == "orthogonal")
+	{
+		newmap.orientation = map_orientation::orthogonal;
+		LOG("orientation: %s", orientation_string);
+	}
+	p2SString renderorder_string = node.attribute("renderorder").as_string();
+	if (renderorder_string == "right-down")
+	{
+		newmap.order = render_order::right_down;
+		LOG("Render order: %s", renderorder_string);
+	}
+	return true;
+}
+
+bool j1Map::LoadTileset(const pugi::xml_node& node) {
+	for (pugi::xml_node tileset = node.child("tileset"); tileset; tileset = tileset.next_sibling("tileset")) {
+		tile_set newtileset;
+		newtileset.tileimage = App->tex->Load(tileset.child("image").attribute("source").as_string());
+		newtileset.gid1 = tileset.attribute("firstgid").as_int();
+		newtileset.name = tileset.attribute("name").as_string();
+		newtileset.tilewidth = tileset.attribute("tilewidth").as_int();
+		newtileset.tileheight = tileset.attribute("tileheight").as_int();
+		newtileset.spacing = tileset.attribute("spacing").as_int();
+		newtileset.margin = tileset.attribute("margin").as_int();
+		tile_list.push_back(newtileset);
+	}
+	return true;
+}

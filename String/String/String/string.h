@@ -5,8 +5,13 @@ class String
 {
 private:
 	char* txt = nullptr;
+
 public:
 	String(){}
+	String(char* txt)
+	{
+
+	}
 	~String(){}
 };
 #endif

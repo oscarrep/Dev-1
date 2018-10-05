@@ -1112,7 +1112,7 @@ namespace pugi
 
 	public:
 		// Construct a compiled object from XPath expression.
-		// If PUGIXML_NO_EXCEPTIONS is not defined, throws xpath_exception on compilation errors.
+		// If PUGIXML_NO_EXCEPTIONS is not defined, thwidth xpath_exception on compilation errors.
 		explicit xpath_query(const char_t* query, xpath_variable_set* variables = 0);
 
 		// Destructor
@@ -1122,33 +1122,33 @@ namespace pugi
 		xpath_value_type return_type() const;
 		
 		// Evaluate expression as boolean value in the specified context; performs type conversion if necessary.
-		// If PUGIXML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
+		// If PUGIXML_NO_EXCEPTIONS is not defined, thwidth std::bad_alloc on out of memory errors.
 		bool evaluate_boolean(const xpath_node& n) const;
 		
 		// Evaluate expression as double value in the specified context; performs type conversion if necessary.
-		// If PUGIXML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
+		// If PUGIXML_NO_EXCEPTIONS is not defined, thwidth std::bad_alloc on out of memory errors.
 		double evaluate_number(const xpath_node& n) const;
 		
 	#ifndef PUGIXML_NO_STL
 		// Evaluate expression as string value in the specified context; performs type conversion if necessary.
-		// If PUGIXML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
+		// If PUGIXML_NO_EXCEPTIONS is not defined, thwidth std::bad_alloc on out of memory errors.
 		string_t evaluate_string(const xpath_node& n) const;
 	#endif
 		
 		// Evaluate expression as string value in the specified context; performs type conversion if necessary.
 		// At most capacity characters are written to the destination buffer, full result size is returned (includes terminating zero).
-		// If PUGIXML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
+		// If PUGIXML_NO_EXCEPTIONS is not defined, thwidth std::bad_alloc on out of memory errors.
 		// If PUGIXML_NO_EXCEPTIONS is defined, returns empty  set instead.
 		size_t evaluate_string(char_t* buffer, size_t capacity, const xpath_node& n) const;
 
 		// Evaluate expression as node set in the specified context.
-		// If PUGIXML_NO_EXCEPTIONS is not defined, throws xpath_exception on type mismatch and std::bad_alloc on out of memory errors.
+		// If PUGIXML_NO_EXCEPTIONS is not defined, thwidth xpath_exception on type mismatch and std::bad_alloc on out of memory errors.
 		// If PUGIXML_NO_EXCEPTIONS is defined, returns empty node set instead.
 		xpath_node_set evaluate_node_set(const xpath_node& n) const;
 
 		// Evaluate expression as node set in the specified context.
 		// Return first node in document order, or empty node if node set is empty.
-		// If PUGIXML_NO_EXCEPTIONS is not defined, throws xpath_exception on type mismatch and std::bad_alloc on out of memory errors.
+		// If PUGIXML_NO_EXCEPTIONS is not defined, thwidth xpath_exception on type mismatch and std::bad_alloc on out of memory errors.
 		// If PUGIXML_NO_EXCEPTIONS is defined, returns empty node instead.
 		xpath_node evaluate_node(const xpath_node& n) const;
 

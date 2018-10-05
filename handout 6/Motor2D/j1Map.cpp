@@ -35,6 +35,21 @@ void j1Map::Draw()
 	MapLayer* layer = data.layers.start->data; // for now we just use the first layer and tileset
 	TileSet* tileset = data.tilesets.start->data;
 
+	for (p2List_item<TileSet*>* tilesetIterator = data.tilesets.start; tilesetIterator != NULL; tilesetIterator = tilesetIterator->next) {
+		for (p2List_item<MapLayer*>* layerIterator = data.layers.start; layerIterator != NULL; layerIterator = layerIterator->next) {
+			for (int column = 0; column < layerIterator->data->width; ++column) {
+				for (int row = 0; row < layerIterator->data->height; ++row) {
+					uint gid = layerIterator->data->data[GetArrayPos(column, row)];
+					if (gid != 0) {
+						iPoint worldPos = MapToWorld(column, row);
+						App->render->Blit(tilesetIterator->data->texture, worldPos.x, worldPos.y, &tilesetIterator->data->GetTileRect(gid));
+					}
+				}
+			}
+
+		}
+	}
+
 	// TODO 10(old): Complete the draw function
 }
 
@@ -42,9 +57,20 @@ iPoint j1Map::MapToWorld(int x, int y) const
 {
 	iPoint ret(0,0);
 	// TODO 8(old): Create a method that translates x,y coordinates from map positions to world positions
+	if (data.type == MAPTYPE_ORTHOGONAL)
+	{
 
+		ret.x = x * data.tile_width;
+		ret.y = y * data.tile_height;
+	}
 	// TODO 1: Add isometric map to world coordinates
+	//return retelse if (data.type == MAPTYPE_ISOMETRIC)
+	{
+		ret.x = (x - y)*data.tile_width / 2;
+		ret.y = (x + y)*data.tile_height / 2;
+	}
 	return ret;
+	
 }
 
 
@@ -52,8 +78,19 @@ iPoint j1Map::WorldToMap(int x, int y) const
 {
 	iPoint ret(0,0);
 	// TODO 2: Add orthographic world to map coordinates
+	if (data.type == MAPTYPE_ORTHOGONAL)
+	{
 
+		ret.x = x / data.tile_width;
+		ret.y = y / data.tile_height;
+	}
+	
 	// TODO 3: Add the case for isometric maps to WorldToMap
+	else if (data.type == MAPTYPE_ISOMETRIC)
+	{
+		ret.x = ((x / data.width*0.5f) + (y / data.height*0.5f));
+		ret.y = ((x / data.width*0.5f) - (y / data.height*0.5f)) / 2;
+	}
 	return ret;
 }
 
@@ -61,6 +98,11 @@ SDL_Rect TileSet::GetTileRect(int id) const
 {
 	SDL_Rect rect = {0, 0, 0, 0};
 	// TODO 7(old): Create a method that receives a tile id and returns it's Rect
+	int relative_id = id - firstgid;
+	rect.w = tile_width;
+	rect.h = tile_height;
+	rect.x = margin + ((rect.w + spacing) * (relative_id % num_tiles_width));
+	rect.y = margin + ((rect.h + spacing) * (relative_id / num_tiles_width));
 	return rect;
 }
 
@@ -336,4 +378,8 @@ bool j1Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 	}
 
 	return ret;
+}
+
+inline uint j1Map::GetArrayPos(int column, int row) const {
+	return(row * data.width + column);
 }

@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="string.h">
+    <ClInclude Include="stringclass.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

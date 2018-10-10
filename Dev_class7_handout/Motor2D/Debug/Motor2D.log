@@ -1,0 +1,5 @@
+﻿  j1Map.cpp
+c:\users\oscarrp4\desktop\physics-ii\dev-1\dev_class7_handout\motor2d\j1map.cpp(62): warning C4101: 'item': unreferenced local variable
+c:\users\oscarrp4\desktop\physics-ii\dev-1\dev_class7_handout\motor2d\j1map.cpp(83): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\oscarrp4\desktop\physics-ii\dev-1\dev_class7_handout\motor2d\j1map.cpp(84): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Motor2D.vcxproj -> C:\Users\oscarrp4\Desktop\Physics-II\Dev-1\Dev_class7_handout\Debug\Development - Class 7.exe

@@ -1,0 +1,4 @@
+﻿  j1Map.cpp
+c:\users\oscarrp4\documents\github\dev-1\dev_class7.5_handout\motor2d\j1map.cpp(186): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\oscarrp4\documents\github\dev-1\dev_class7.5_handout\motor2d\j1map.cpp(187): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Motor2D.vcxproj -> C:\Users\oscarrp4\Documents\GitHub\Dev-1\Dev_class7.5_handout\Debug\Dev Class7.5 Handout.exe

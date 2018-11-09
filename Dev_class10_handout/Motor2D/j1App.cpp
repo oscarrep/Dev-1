@@ -87,6 +87,7 @@ bool j1App::Awake()
 		organization.create(app_config.child("organization").child_value());
 
 		// TODO 1: Read from config file your framerate cap
+		frame_cap = app_config.child("app").attribute("framerate_cap").as_int();
 	}
 
 	if(ret == true)
@@ -203,7 +204,11 @@ void j1App::FinishUpdate()
 
 	// TODO 2: Use SDL_Delay to make sure you get your capped framerate
 
+	SDL_Delay(32);
+
 	// TODO3: Measure accurately the amount of time it SDL_Delay actually waits compared to what was expected
+	j1PerfTimer			ptimer2;
+	LOG(" We waited for %i milliseconds and got back in %f", prev_last_sec_frame_count, ptimer2.ReadMs());
 }
 
 // Call modules before each loop iteration

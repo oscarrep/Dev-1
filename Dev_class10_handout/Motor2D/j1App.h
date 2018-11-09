@@ -109,6 +109,7 @@ private:
 	j1Timer				last_sec_frame_time;
 	uint32				last_sec_frame_count = 0;
 	uint32				prev_last_sec_frame_count = 0;
+	uint32				frame_cap = 0;
 };
 
 extern j1App* App; // No student is asking me about that ... odd :-S
